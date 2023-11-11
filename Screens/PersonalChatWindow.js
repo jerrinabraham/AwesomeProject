@@ -263,4 +263,4 @@ function PersonalChatWindow(){
 }
 
 
-export default PersonalChatWindow,
+export default PersonalChatWindow

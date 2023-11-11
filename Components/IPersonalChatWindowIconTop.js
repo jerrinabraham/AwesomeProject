@@ -8,6 +8,7 @@ import Ionicons from '@expo/vector-icons/Ionicons';
 export default function IPersonalChatWindowIconTop({onPress,onPressing,icon,icons,size,sizes,color,colors}) {
   return (
     <View style={styles.container}>
+
      
       <Ionicons style={{marginHorizontal:18}} onPress={onPressing} name={icons} size={sizes} color={colors} />
       <Ionicons onPress={onPress} name={icon} size={size} color={color} />

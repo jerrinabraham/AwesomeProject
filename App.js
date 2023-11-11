@@ -23,6 +23,10 @@ import PlusButton from './Components/PlusButton';
 
 
 import { ScreenStackHeaderBackButtonImage } from 'react-native-screens';
+import NewContact from './Screens/NewContact/NewContact'
+import Recipients from './Screens/NewChat';
+import Label from './Screens/Label/Label';
+import Archived from './Screens/Archived/Archived';
 
 
 
@@ -31,6 +35,10 @@ const Stack = createNativeStackNavigator();
 const Tab = createBottomTabNavigator();
 //screenOptions={{ headerShown: false }}
 function Divert(){
+
+  const [first, setfirst] = React.useState(true)
+
+ 
   return(
     <Tab.Navigator  screenOptions={({navigation})=>({
       
@@ -74,13 +82,16 @@ function Divert(){
         <BottomIconDown icon="camera" size={32} color={color} />
       ),
     }}/>
-    <Tab.Screen name="Chats" component={Chats} options={{
+
+    
+    <Tab.Screen name="Chats" component={first?Chats:Camera} options={{
         title:"Chats",
-       
-         tabBarIcon: ({ color, size }) => (
-           <BottomIconDown icon="chatbubbles" size={32} color={color}/>
-         ),
+        tabBarIcon: ({ color, size }) => (
+          <BottomIconDown icon="chatbubbles" size={32} color={color}/>
+        ),
+    
        }} />
+
 
 
    
@@ -99,18 +110,123 @@ function Divert(){
 }
 
 function App() {
+
+  
   return (
     <NavigationContainer >
-    <Stack.Navigator>
-        
+   
+   <Stack.Navigator>
+       
+       
+       
+       
+       
+       
+       
+       
+       
+       
+       
+       
+       
+       
+   <Stack.Group>
         <Stack.Screen name="Divert" component={Divert} options={{headerShown:false}}/> 
-        <Stack.Screen name="NewChat" component={NewChat} options={{title:"New Chat",presentation:"modal"}}/> 
         <Stack.Screen name="NewList" component={NewList} options={{ headerShown:false,presentation:"modal" }}/>
         <Stack.Screen name="BroadcastLists" component={BroadcastLists} />
+       
+       
+        
+
         <Stack.Screen name="PlusButton" component={PlusButton} options={{title:"something",presentation:"modal",headerShown:false}}/>
-        <Stack.Screen name="PersonalChatWindow" component={PersonalChatWindow} options={({ route }) => ({ headerTitle: route.params.name,headerRight: () => (
-            <IPersonalChatWindowIconTop onpress={()=>{}} onPressing={()=>{}} icon="call-outline" icons="ios-videocam-outline" size={22} sizes={22} color="grey" colors="grey"/>
-            )})}/>
+        
+    
+   
+          
+        
+        
+           
+           
+        </Stack.Group> 
+
+        <Stack.Screen name="Archived" component={Archived} />
+
+           
+        
+            <Stack.Group screenOptions={{ presentation: 'modal',headerShown:true }}>
+                    
+                    <Stack.Screen name="NewChat" component={NewChat} options={({navigation})=>({
+      
+      
+     
+   
+      
+     
+     headerRight: () => (
+       
+      <Button
+      onPress={() => navigation.goBack()}
+        title="X"
+     
+      />
+   
+    ),
+   })}  /> 
+
+
+                   
+                   
+                   
+                   
+                   
+                   
+                   
+                   
+                   
+                   
+                   
+                   
+                   
+                   
+                   
+                   
+                   
+                   
+                   
+                    <Stack.Screen name="NewContact" component={NewContact}options={{headerShown:false}}/>
+      <Stack.Screen name="Label" component={Label} options={({navigation})=>({
+      
+      
+     
+   
+      
+      headerLeft: () => (
+       
+       <Button
+       onPress={() => navigation.goBack()}
+         title="Cancel"
+      
+       />
+    
+     ),
+     headerRight: () => (
+       
+      <Button
+      onPress={() => navigation.goBack()}
+        title="Done"
+     
+      />
+   
+    ),
+   })}/>
+
+
+<Stack.Screen name="PersonalChatWindow" component={PersonalChatWindow} options={({ route }) => ({ headerTitle: route.params.name,headerRight: () => (
+  <IPersonalChatWindowIconTop onpress={()=>{}} onPressing={()=>{}} icon="call-outline" icons="ios-videocam-outline" size={22} sizes={22} color="grey" colors="grey"/>
+  )})}/> 
+ 
+                    </Stack.Group>
+        
       
 
 
@@ -135,3 +251,4 @@ function App() {
 }
 
 export default App;
+
